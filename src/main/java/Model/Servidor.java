@@ -6,12 +6,14 @@ package Model;
 
 import Control.ClientListener;
 import Control.Utils;
+import Observer.GerenciaNotificacao;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,6 +26,7 @@ public class Servidor {
 //    public static final String HOST = "127.0.0.1";
     private int porta;
     private HashMap<String, ClientListener> clientes;
+    private List<Observer.Observer> observadores;
 
 //    private int porta;
     public Servidor() {
@@ -40,12 +43,13 @@ public class Servidor {
             clientes = new HashMap<String, ClientListener>();
             ServerSocket server = new ServerSocket(this.porta);
             System.out.println("Servidor Inciado: aguardando conexão TCP na porta " + this.porta + "...");
-            while(true){
+            while (true) {
                 Socket conn = server.accept();
                 System.out.println("Conexão recebida do cliente : " + conn.getInetAddress().getHostAddress() + ":" + conn.getPort());
                 conexaoDados = Utils.receberMensagem(conn);
-                if(validaLogin(conexaoDados)){
-                ClientListener cl = new ClientListener(conexaoDados, conn, this);
+                if (validaLogin(conexaoDados)) {
+                    
+                    ClientListener cl = new ClientListener(conexaoDados, conn, this);
                     clientes.put(conexaoDados, cl);
                     Utils.enviarMensagem(conn, "SUCESSO");
                     new Thread(cl).start();

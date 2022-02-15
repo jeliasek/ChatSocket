@@ -47,7 +47,7 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("NOME DO CHAT");
+        jLabel1.setText("CHATZÃO");
 
         jLabel2.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(153, 0, 0));
@@ -68,10 +68,12 @@ public class Login extends javax.swing.JFrame {
 
         tfNome.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
         tfNome.setForeground(new java.awt.Color(153, 0, 0));
+        tfNome.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfNome.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 0), 2));
 
         tfPorta.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
         tfPorta.setForeground(new java.awt.Color(153, 0, 0));
+        tfPorta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfPorta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 0), 2));
         tfPorta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

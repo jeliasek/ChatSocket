@@ -81,9 +81,9 @@ public class Chat extends javax.swing.JFrame {
             public void windowClosing(WindowEvent e) {
                 Utils.enviarMensagem(conn, "FECHAR_CHAT");
                 home.getChatsAbertos().remove(dadosConexao);
-                home.getConectadosListeners().remove(dadosConexao);
                 home.getConectadosListeners().get(dadosConexao).setIsChatOpen(false);
                 home.getConectadosListeners().get(dadosConexao).setIsRunning(false);
+                home.getConectadosListeners().remove(dadosConexao);
                 
             }
 
