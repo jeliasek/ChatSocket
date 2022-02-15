@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
  *
  * @author Joao
  */
-public class Home extends javax.swing.JFrame implements Observer.Observer{
+public class Home extends javax.swing.JFrame implements Observer.Observer {
 
     /**
      * Creates new form Home
@@ -54,7 +54,7 @@ public class Home extends javax.swing.JFrame implements Observer.Observer{
         this.conn = conn;
         this.gerenciaNotificacao = GerenciaNotificacao.getInstance();
         this.gerenciaNotificacao.addObservadores(this);
-        
+
         initComponents();
         this.gerenciaNotificacao.verificaAddUsuario();
         jlTitulo.setText("Bem-Vindo(a), " + dadosLogin.split(":")[0]);
@@ -64,7 +64,7 @@ public class Home extends javax.swing.JFrame implements Observer.Observer{
         startServidor(this, Integer.parseInt(dadosLogin.split(":")[2]));
         getUsuariosConectados();
     }
-    
+
     @Override
     public void notificarNovoUsuario() {
         getUsuariosConectados();
@@ -74,8 +74,7 @@ public class Home extends javax.swing.JFrame implements Observer.Observer{
     public void notificarSaidaUsuario() {
         getUsuariosConectados();
     }
-    
-    
+
     private void bloquearContato() {
         int index = jList.getSelectedIndex();
 
@@ -102,8 +101,13 @@ public class Home extends javax.swing.JFrame implements Observer.Observer{
         int index = jList.getSelectedIndex();
         if (index != -1) {
             String selecionado = jList.getSelectedValue().toString();
-            user.abrirChat(this, selecionado);
-//            String[] valor = selecionado.split(":");
+            String[] valor = selecionado.split(":");
+            if (!usuariosBloqueados.contains(valor[0])) {
+                user.abrirChat(this, selecionado);
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuário bloqueado! Desbloqueie o usuário para abrir o chat.");
+            }
+//           
 //            if (!chatsAbertos.contains(selecionado)) {
 //                if (!usuariosBloqueados.contains(valor[0])) {
 //                    try {
@@ -345,5 +349,4 @@ public class Home extends javax.swing.JFrame implements Observer.Observer{
     private javax.swing.JLabel jlTitulo;
     // End of variables declaration//GEN-END:variables
 
-    
 }
